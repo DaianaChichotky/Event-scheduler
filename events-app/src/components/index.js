@@ -1,0 +1,5 @@
+export { default as NavBar } from './shared/NavBar';
+export { default as EventCard } from './card/EventCard';
+export { default as Footer } from './shared/Footer';
+export { default as Hero } from './home/Hero';
+export { default as SearchBar } from './home/SearchBar';
