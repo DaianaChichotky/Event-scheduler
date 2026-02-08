@@ -3,3 +3,6 @@ export { default as EventCard } from './card/EventCard';
 export { default as Footer } from './shared/Footer';
 export { default as Hero } from './home/Hero';
 export { default as SearchBar } from './home/SearchBar';
+export { default as EventMap } from './card/EventMap';
+export { default as UpcomingEvents } from './card/UpcomingEvents';
+export { default as EventsMap } from './home/EventsMap';

@@ -3,7 +3,7 @@ import { MainLayout, ProtectedLayout } from './layouts/index.js';
 import {
   HomePage,
   LogInPage,
-  RegisterPage,
+  SignUpPage,
   EventDetailsPage,
   CreateEventPage,
 } from './pages/index';
@@ -14,12 +14,18 @@ const App = () => (
       <Route path='/' element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path='login' element={<LogInPage />} />
-        <Route path='register' element={<RegisterPage />} />
+        <Route path='sign-up' element={<SignUpPage />} />
         <Route path='events/:id' element={<EventDetailsPage />} />
         {/* Protected Routes */}
-        <Route element={<ProtectedLayout />}>
-          <Route path='events/new' element={<CreateEventPage />} />
-        </Route>
+
+        <Route
+          path='events/new'
+          element={
+            <ProtectedLayout>
+              <CreateEventPage />
+            </ProtectedLayout>
+          }
+        />
       </Route>
     </Routes>
   </BrowserRouter>

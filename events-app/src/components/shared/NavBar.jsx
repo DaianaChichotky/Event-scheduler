@@ -49,7 +49,7 @@ const Navbar = () => {
             className='menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box mt-3 w-44 p-2 shadow'
           >
             <li>
-              <Link to='/register'>Sign up</Link>
+              <Link to='/sign-up'>Sign up</Link>
             </li>
             <li>
               <Link to='/login'>Log in</Link>

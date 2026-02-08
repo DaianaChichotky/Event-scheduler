@@ -1,35 +1,55 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/events?page=1&limit=10`;
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const useEvents = () => {
   //states
   const [events, setEvents] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+
   const [filterEvents, setFilterEvents] = useState({ title: '', date: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Get events
+  // Fetch all events
+
+  const fetchEvents = useCallback(async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/events?page=1&limit=10`);
+      if (!res.ok) throw new Error('Failed to fetch events');
+      const data = await res.json();
+      // Order by date
+      const sortedEvents = data.results.sort(
+        (a, b) => new Date(a.date) - new Date(b.date),
+      );
+
+      setEvents(sortedEvents);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error('Failed to fetch events');
-        const data = await res.json();
-        // Ordenar cronológicamente (de más cercano a más lejano)
-        const sortedEvents = data.results.sort(
-          (a, b) => new Date(b.date) - new Date(a.date),
-        );
+    fetchEvents();
+  }, [fetchEvents]);
 
-        setEvents(sortedEvents);
+  // Fetch upcoming events
+
+  useEffect(() => {
+    const fetchUpcoming = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/events/upcoming`);
+        if (!res.ok) throw new Error('Failed to fetch upcoming events');
+        const data = await res.json();
+        setUpcomingEvents(data.results ?? data);
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.error(err);
       }
     };
-    fetchEvents();
+
+    fetchUpcoming();
   }, []);
 
   // filter by event
@@ -54,10 +74,12 @@ const useEvents = () => {
 
   return {
     events: filteredEvents,
+    upcomingEvents,
     loading,
     error,
     setFilterEvents,
     clearFilters,
+    fetchEvents,
   };
 };
 
