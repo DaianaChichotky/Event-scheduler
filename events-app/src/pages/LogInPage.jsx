@@ -47,54 +47,77 @@ const LogInPage = () => {
     }, 1000);
   };
 
+  const isLoggedIn = !!localStorage.getItem('token');
+
   return (
     <div className='flex justify-center items-center m-20'>
       <fieldset className='fieldset bg-base-200 border-base-300 rounded-box w-2xl border p-6'>
-        <h1 className='font-bold uppercase text-2xl mb-8'>Log In</h1>
-
-        {/* email */}
-        <label className='label'>Email</label>
-        <input
-          type='email'
-          className='input input-bordered w-full'
-          placeholder='Email'
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
-
-        {/* password */}
-        <label className='label mt-4'>Password</label>
-        <input
-          type='password'
-          className='input input-bordered w-full'
-          placeholder='Password'
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
-
-        {errorMessage && <p className='text-red-500 mt-2'>{errorMessage}</p>}
-        {successMessage && (
-          <p className='text-green-500 mt-2'>{successMessage}</p>
-        )}
-
-        {/* log in button */}
-        <button
-          className='btn btn-neutral mt-4 w-full'
-          type='submit'
-          onClick={handleSubmit}
+        <h1
+          className='font-bold uppercase text-2xl mb-8'
+          style={{ color: '#6F5A55' }}
         >
-          Log In
-        </button>
+          {isLoggedIn ? 'My Account' : 'Log In'}
+        </h1>
 
-        {/* loggout */}
-        {localStorage.getItem('token') && (
-          <button
-            className='btn btn-outline btn-secondary mt-2 w-full'
-            type='button'
-            onClick={handleLogout}
-          >
-            Log Out
-          </button>
+        {!isLoggedIn ? (
+          <>
+            {/* email */}
+            <label className='label'>Email</label>
+            <input
+              type='email'
+              className='input input-bordered w-full'
+              placeholder='Email'
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+
+            {/* password */}
+            <label className='label mt-4'>Password</label>
+            <input
+              type='password'
+              className='input input-bordered w-full'
+              placeholder='Password'
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+
+            {errorMessage && (
+              <p className='text-red-500 mt-2'>{errorMessage}</p>
+            )}
+            {successMessage && (
+              <p className='text-green-500 mt-2'>{successMessage}</p>
+            )}
+
+            {/* log in button */}
+            <button
+              className='mt-4 w-full px-3 py-2 rounded-lg
+        bg-[#85CE5D] text-white
+        hover:bg-[#6F5A55]
+        transition-colors font-semibold cursor-pointer'
+              type='submit'
+              onClick={handleSubmit}
+            >
+              Log In
+            </button>
+          </>
+        ) : (
+          <>
+            <p className='mb-4 text-center text-[#6F5A55] font-medium'>
+              You are already logged in
+            </p>
+
+            {/* logout */}
+            <button
+              className='w-full px-3 py-2 rounded-lg
+        bg-[#6F5A55] text-white
+        hover:bg-[#85CE5D]
+        transition-colors font-semibold cursor-pointer'
+              type='button'
+              onClick={handleLogout}
+            >
+              Log Out
+            </button>
+          </>
         )}
       </fieldset>
     </div>

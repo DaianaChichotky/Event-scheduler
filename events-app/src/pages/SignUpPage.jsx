@@ -43,7 +43,12 @@ const SignUpPage = () => {
   return (
     <div className='flex justify-center items-center m-20'>
       <fieldset className='fieldset bg-base-200 border-base-300 rounded-box w-2xl border p-6'>
-        <h1 className='font-bold uppercase text-2xl mb-8'>Sign Up</h1>
+        <h1
+          className='font-bold uppercase text-2xl mb-8'
+          style={{ color: '#6F5A55' }}
+        >
+          Sign Up
+        </h1>
 
         {/* email */}
         <label className='label'>Email</label>
@@ -71,7 +76,10 @@ const SignUpPage = () => {
         )}
         {/* submit */}
         <button
-          className='btn btn-neutral mt-4 w-full'
+          className='mt-4 w-full px-3 py-2 rounded-lg
+        bg-[#85CE5D] text-white
+        hover:bg-[#6F5A55]
+        transition-colors font-semibold cursor-pointer'
           type='submit'
           onClick={handleSubmit}
         >

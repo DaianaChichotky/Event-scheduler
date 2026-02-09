@@ -54,32 +54,52 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
   };
 
   return (
-    <section className='mt-8'>
-      <h2 className='text-3xl font-bold text-left ml-5 mb-4'>
-        Find your next event
+    <section className='mt-8 '>
+      <h2
+        className='text-2xl font-bold text-left mb-6'
+        style={{ color: '#6F5A55' }}
+      >
+        FIND YOUR NEXT EVENT
       </h2>
 
       <div className='flex flex-wrap items-center gap-3 ml-5 mb-6'>
         {/* Slicers */}
-        {['Today', 'This week'].map((slicer) => (
-          <button
-            key={slicer}
-            className={`btn btn-sm ${
-              selectedSlicer === slicer ? 'btn-primary' : 'btn-outline'
-            }`}
-            onClick={() => handleSlicerClick(slicer)}
-          >
-            {slicer}
-          </button>
-        ))}
+        {['Today', 'This week'].map((slicer) => {
+          const isActive = selectedSlicer === slicer;
+
+          return (
+            <button
+              key={slicer}
+              onClick={() => handleSlicerClick(slicer)}
+              className={`
+        px-4 py-2 rounded-lg text-sm font-semibold
+        transition-colors duration-300 cursor-pointer
+        ${
+          isActive
+            ? 'bg-[#6F5A55] text-white'
+            : 'bg-[#85CE5D] text-white hover:bg-[#6F5A55]'
+        }
+      `}
+            >
+              {slicer}
+            </button>
+          );
+        })}
 
         {/* Date picker */}
         <div className='flex items-center gap-2'>
           <input
             type='date'
-            className='input input-bordered'
             value={selectedDate}
             onChange={handleDateChange}
+            className='
+    px-4 py-2 rounded-lg text-sm font-semibold
+    bg-[#85CE5D] text-white
+    hover:bg-[#6F5A55]
+    transition-colors duration-300
+    outline-none
+    cursor-pointer
+  '
           />
         </div>
 
@@ -90,13 +110,31 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
             placeholder='Search events'
             value={title}
             onChange={handleTitleChange}
-            className='w-full bg-transparent border-b border-gray-400 outline-none pr-10 text-sm placeholder-gray-500'
+            className='
+    w-64 px-3 py-2
+    rounded-lg
+    bg-[#85CE5D] text-white
+    placeholder-white/70
+    hover:bg-[#6F5A55]
+    transition-colors
+    outline-none
+    text-sm cursor-pointer font-semibold
+  '
           />
-          <MdSearch className='absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 text-lg' />
+          <MdSearch className='absolute right-0 top-1/2 -translate-y-1/2 text-black text-lg' />
         </div>
 
         {/* Clear button */}
-        <button className='btn btn-outline' onClick={handleClear}>
+        <button
+          onClick={handleClear}
+          className='
+    px-4 py-2 rounded-lg text-sm font-semibold
+    bg-[#6F5A55] text-white
+    hover:bg-[#85CE5D]
+    transition-colors duration-300
+    cursor-pointer
+  '
+        >
           Clear filters
         </button>
       </div>

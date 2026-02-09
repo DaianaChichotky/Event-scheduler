@@ -71,12 +71,17 @@ const CreateEventPage = () => {
   };
 
   return (
-    <div className='flex justify-center items-center min-h-screen bg-base-200 p-6'>
+    <div className='flex justify-center  bg-cover m-20'>
       <form
         onSubmit={handleSubmit}
         className='bg-base-100 shadow-lg rounded-lg p-8 w-full max-w-2xl space-y-4'
       >
-        <h2 className='text-3xl font-bold text-center mb-4'>Create Event</h2>
+        <h2
+          className='text-3xl font-bold mb-4 uppercase'
+          style={{ color: '#6F5A55' }}
+        >
+          Create Event
+        </h2>
 
         {message && (
           <div
@@ -137,7 +142,13 @@ const CreateEventPage = () => {
           required
         />
 
-        <button type='submit' className='btn btn-primary w-full mt-2'>
+        <button
+          type='submit'
+          className='mt-4 w-full px-3 py-2 rounded-lg
+        bg-[#85CE5D] text-white
+        hover:bg-[#6F5A55]
+        transition-colors font-semibold cursor-pointer'
+        >
           Create Event
         </button>
       </form>

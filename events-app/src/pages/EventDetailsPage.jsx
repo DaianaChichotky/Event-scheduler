@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { EventMap } from '../components';
 import { useNavigate } from 'react-router';
+import { MdArrowBack } from 'react-icons/md';
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -38,11 +39,13 @@ const EventDetailsPage = () => {
   if (!event) return <p>No event found</p>;
 
   return (
-    <div className='container mx-auto py-10 px-4'>
+    <div className='container mx-auto py-10 px-4' style={{ color: '#5C4B47' }}>
       <h1 className='text-4xl font-bold mb-4'>{event.title}</h1>
-      <p className='text-gray-700 mb-2'>{event.description}</p>
-      <p className='mb-2'>Date: {new Date(event.date).toLocaleString()}</p>
-      <p className='mb-2'>Location: {event.location}</p>
+      <p className='mb-2 font-bold'>{event.description}</p>
+      <p className='mb-2 font-bold'>
+        Date: {new Date(event.date).toLocaleString()}
+      </p>
+      <p className='mb-2 font-bold'>Location: {event.location}</p>
 
       <EventMap
         lat={event.latitude}
@@ -51,7 +54,12 @@ const EventDetailsPage = () => {
         address={event.location}
       />
 
-      <button className='btn btn-outline btn-secondary mt-10' onClick={goHome}>
+      <button
+        className='mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg
+          bg-[#5C4B47] text-white hover:bg-[#85CE5D] transition-colors font-semibold cursor-pointer'
+        onClick={goHome}
+      >
+        <MdArrowBack className='text-xl' />
         Go Back
       </button>
     </div>

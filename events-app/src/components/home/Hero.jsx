@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { EventCard, EventsMap } from '..';
 
 const Hero = ({ events, loading, error }) => {
-  const initialCount = 6;
-  const increment = 3;
+  const initialCount = 8;
+  const increment = 4;
   const [visibleEvents, setVisibleEvents] = useState(initialCount);
 
   if (loading)
@@ -23,7 +23,7 @@ const Hero = ({ events, loading, error }) => {
   return (
     <div>
       {/* Grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5'>
         {displayedEvents.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
@@ -33,16 +33,26 @@ const Hero = ({ events, loading, error }) => {
       <div className='flex justify-center mt-6 gap-4'>
         {visibleEvents < events.length && (
           <button
-            className='btn btn-outline btn-primary'
             onClick={handleShowMore}
+            className='
+        px-6 py-3 rounded-lg text-sm font-semibold
+        bg-[#85CE5D] text-white
+        hover:bg-[#6F5A55]
+        transition-colors duration-300 cursor-pointer
+      '
           >
             Show More
           </button>
         )}
         {visibleEvents > initialCount && (
           <button
-            className='btn btn-outline btn-secondary'
             onClick={handleShowLess}
+            className='
+        px-6 py-3 rounded-lg text-sm font-semibold
+        bg-[#85CE5D] text-white
+        hover:bg-[#6F5A55]
+        transition-colors duration-300 cursor-pointer
+      '
           >
             Show Less
           </button>
