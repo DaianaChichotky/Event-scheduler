@@ -32,28 +32,12 @@ const Hero = ({ events, loading, error }) => {
       {/* Show More / Show Less */}
       <div className='flex justify-center mt-6 gap-4'>
         {visibleEvents < events.length && (
-          <button
-            onClick={handleShowMore}
-            className='
-        px-6 py-3 rounded-lg text-sm font-semibold
-        bg-[#85CE5D] text-white
-        hover:bg-[#6F5A55]
-        transition-colors duration-300 cursor-pointer
-      '
-          >
+          <button onClick={handleShowMore} className='btn btn-primary'>
             Show More
           </button>
         )}
         {visibleEvents > initialCount && (
-          <button
-            onClick={handleShowLess}
-            className='
-        px-6 py-3 rounded-lg text-sm font-semibold
-        bg-[#85CE5D] text-white
-        hover:bg-[#6F5A55]
-        transition-colors duration-300 cursor-pointer
-      '
-          >
+          <button onClick={handleShowLess} className='btn btn-terciary'>
             Show Less
           </button>
         )}

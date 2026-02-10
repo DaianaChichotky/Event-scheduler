@@ -55,10 +55,7 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
 
   return (
     <section className='mt-8 '>
-      <h2
-        className='text-2xl font-bold text-left mb-6'
-        style={{ color: '#6F5A55' }}
-      >
+      <h2 className='text-2xl font-bold text-center mb-6 mt-20'>
         FIND YOUR NEXT EVENT
       </h2>
 
@@ -72,12 +69,17 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
               key={slicer}
               onClick={() => handleSlicerClick(slicer)}
               className={`
-        px-4 py-2 rounded-lg text-sm font-semibold
-        transition-colors duration-300 cursor-pointer
+        px-4
+        py-2
+        rounded-lg
+        text-sm 
+        transition-colors
+        duration-300
+        cursor-pointer
         ${
           isActive
-            ? 'bg-[#6F5A55] text-white'
-            : 'bg-[#85CE5D] text-white hover:bg-[#6F5A55]'
+            ? 'bg-neutral text-white'
+            : 'bg-success text-white hover:bg-neutral'
         }
       `}
             >
@@ -93,9 +95,13 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
             value={selectedDate}
             onChange={handleDateChange}
             className='
-    px-4 py-2 rounded-lg text-sm font-semibold
-    bg-[#85CE5D] text-white
-    hover:bg-[#6F5A55]
+    px-4
+    py-2
+    rounded-lg
+    text-sm
+    bg-success
+    text-white
+    hover:bg-neutral
     transition-colors duration-300
     outline-none
     cursor-pointer
@@ -104,37 +110,29 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
         </div>
 
         {/* Search input */}
-        <div className='relative w-64'>
+        <div className='relative w-72'>
           <input
             type='text'
             placeholder='Search events'
             value={title}
             onChange={handleTitleChange}
             className='
-    w-64 px-3 py-2
-    rounded-lg
-    bg-[#85CE5D] text-white
-    placeholder-white/70
-    hover:bg-[#6F5A55]
-    transition-colors
-    outline-none
-    text-sm cursor-pointer font-semibold
-  '
+      w-full
+  bg-transparent
+  border-b border-success
+  px-1 py-2
+  text-sm
+  text-base-content
+  placeholder-success
+  outline-none
+  transition-colors
+    '
           />
-          <MdSearch className='absolute right-0 top-1/2 -translate-y-1/2 text-black text-lg' />
+          <MdSearch className='absolute right-0 top-1/2 -translate-y-1/2 text-white text-lg' />
         </div>
 
         {/* Clear button */}
-        <button
-          onClick={handleClear}
-          className='
-    px-4 py-2 rounded-lg text-sm font-semibold
-    bg-[#6F5A55] text-white
-    hover:bg-[#85CE5D]
-    transition-colors duration-300
-    cursor-pointer
-  '
-        >
+        <button onClick={handleClear} className='btn btn-soft btn-success'>
           Clear filters
         </button>
       </div>

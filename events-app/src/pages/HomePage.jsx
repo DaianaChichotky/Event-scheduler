@@ -12,12 +12,10 @@ const HomePage = () => {
   } = useEvents();
 
   return (
-    <section className='mb-4 text-center p-5'>
+    <section className='mb-4 text-center p-5 text-neutral'>
       <div>
-        <h1 className='text-7xl font-bold' style={{ color: '#5C4B47' }}>
-          Events around the world!
-        </h1>
-        <p className='mt-6 text-2xl' style={{ color: '#5C4B47' }}>
+        <h1 className='text-7xl font-bold'>Events around the world!</h1>
+        <p className='mt-6 text-2xl'>
           Don't miss the following events. Pick your location and discover
           what's coming!
         </p>

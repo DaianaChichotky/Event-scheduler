@@ -1,27 +1,19 @@
 import { Link } from 'react-router';
 
 const Navbar = () => {
+  const navBtn = 'btn btn-neutral';
+
   return (
     <nav className='text-white px-6 py-4 bg-transparent'>
       <div className='flex justify-end gap-4 w-full'>
-        <Link
-          to='/'
-          style={{ backgroundColor: '#85CE5D' }}
-          className='px-4 py-2 rounded-lg font-semibold hover:text-white transition-colors'
-          onMouseEnter={(e) => (e.target.style.backgroundColor = '#8B7777')}
-          onMouseLeave={(e) => (e.target.style.backgroundColor = '#85CE5D')}
-        >
+        <Link to='/' className={navBtn}>
           Home
         </Link>
-        <Link
-          to='/events/new'
-          style={{ backgroundColor: '#85CE5D' }}
-          className='px-4 py-2 rounded-lg font-semibold hover:text-white transition-colors'
-          onMouseEnter={(e) => (e.target.style.backgroundColor = '#8B7777')}
-          onMouseLeave={(e) => (e.target.style.backgroundColor = '#85CE5D')}
-        >
+
+        <Link to='/events/new' className={navBtn}>
           Create Event
         </Link>
+
         {/* Profile */}
         <div className='dropdown dropdown-end'>
           <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>

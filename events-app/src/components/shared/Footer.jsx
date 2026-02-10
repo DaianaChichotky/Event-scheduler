@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 const Footer = () => {
   return (
     <footer className='bg-white mt-16'>
-      <div className='max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-[#8B7777]'>
+      <div className='max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-neutral'>
         {/* Brand / descripción */}
         <div>
           <h3 className='text-2xl font-bold mb-2'>Event Finder</h3>
@@ -43,7 +43,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className='border-t border-[#8B7777]/30 text-center py-4 text-sm text-[#8B7777]'>
+      <div className='border-t border-neutral/30 text-center py-4 text-sm text-neutral'>
         © {new Date().getFullYear()} Event Finder — All rights reserved
       </div>
     </footer>
