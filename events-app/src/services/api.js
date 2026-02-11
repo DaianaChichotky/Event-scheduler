@@ -3,21 +3,29 @@ import { useEffect, useState, useCallback } from 'react';
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const useEvents = () => {
-  //states
+  // states
   const [events, setEvents] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
-
   const [filterEvents, setFilterEvents] = useState({ title: '', date: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all events
+  // Headers con token
+  const getAuthHeaders = () => ({
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    'Content-Type': 'application/json',
+  });
 
+  // Fetch all events
   const fetchEvents = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/api/events?page=1&limit=10`);
+      const res = await fetch(`${API_URL}/api/events?page=1&limit=10`, {
+        headers: getAuthHeaders(),
+      });
+
       if (!res.ok) throw new Error('Failed to fetch events');
       const data = await res.json();
+
       // Order by date
       const sortedEvents = data.results.sort(
         (a, b) => new Date(a.date) - new Date(b.date),
@@ -36,11 +44,13 @@ const useEvents = () => {
   }, [fetchEvents]);
 
   // Fetch upcoming events
-
   useEffect(() => {
     const fetchUpcoming = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/events/upcoming`);
+        const res = await fetch(`${API_URL}/api/events/upcoming`, {
+          headers: getAuthHeaders(),
+        });
+
         if (!res.ok) throw new Error('Failed to fetch upcoming events');
         const data = await res.json();
         setUpcomingEvents(data.results ?? data);
@@ -53,7 +63,6 @@ const useEvents = () => {
   }, []);
 
   // filter by event
-
   const filteredEvents = events.filter((event) => {
     const matchesTitle = filterEvents.title
       ? event.title.toLowerCase().includes(filterEvents.title.toLowerCase())
@@ -67,7 +76,6 @@ const useEvents = () => {
   });
 
   // clean filters
-
   const clearFilters = () => {
     setFilterEvents({ title: '', date: '' });
   };
