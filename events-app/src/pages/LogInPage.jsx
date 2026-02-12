@@ -25,7 +25,7 @@ const LogInPage = () => {
 
       if (!res.ok) throw new Error(data.message || 'Login failed');
 
-      // guardar token en localStorage
+      // save token in localStorage
       localStorage.setItem('token', data.token);
 
       setSuccessMessage('Login successful! Redirecting to Home...');
@@ -41,7 +41,7 @@ const LogInPage = () => {
     setTimeout(() => {
       setSuccessMessage('');
     }, 1500);
-    // Redirigir a login después de 1 segundo (opcional)
+    // go to login after 1sec
     setTimeout(() => {
       navigate('/login');
     }, 1000);

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { EventCard, EventsMap } from '..';
 
-const Hero = ({ events, loading, error }) => {
-  const initialCount = 8;
+const Hero = ({ events, loading, error, deleteEvent, editEvent }) => {
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const initialCount = 4;
   const increment = 4;
   const [visibleEvents, setVisibleEvents] = useState(initialCount);
 
@@ -25,7 +27,13 @@ const Hero = ({ events, loading, error }) => {
       {/* Grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5'>
         {displayedEvents.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <EventCard
+            key={event.id}
+            event={event}
+            isLoggedIn={isLoggedIn}
+            deleteEvent={deleteEvent}
+            editEvent={editEvent}
+          />
         ))}
       </div>
 

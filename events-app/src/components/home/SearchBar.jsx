@@ -10,26 +10,46 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
     setSelectedSlicer(slicer);
 
     const today = new Date();
-    const startOfWeek = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - today.getDay());
-    const endOfWeek = new Date();
+
+    const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
 
     if (slicer === 'Today') {
-      setFilterEvents((prev) => ({
-        ...prev,
-        date: today.toISOString().split('T')[0],
+      setFilterEvents({
+        title: title,
+        date: 'today',
         startDate: '',
         endDate: '',
-      }));
+      });
       setSelectedDate('');
-    } else if (slicer === 'This week') {
-      setFilterEvents((prev) => ({
-        ...prev,
+    }
+
+    if (slicer === 'This week') {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // lunes
+      const startOfWeek = new Date(today);
+      const day = today.getDay(); // domingo = 0, lunes = 1
+      const diffToMonday = day === 0 ? -6 : 1 - day;
+      startOfWeek.setDate(today.getDate() + diffToMonday);
+      startOfWeek.setHours(0, 0, 0, 0); // inicio lunes
+
+      // domingo
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      endOfWeek.setHours(23, 59, 59, 999); // fin domingo
+
+      setFilterEvents({
+        title: '',
+        date: '',
         startDate: startOfWeek.toISOString().split('T')[0],
         endDate: endOfWeek.toISOString().split('T')[0],
-        date: '',
-      }));
+      });
       setSelectedDate('');
     }
   };
@@ -37,7 +57,13 @@ const SearchBar = ({ setFilterEvents, clearFilters }) => {
   const handleDateChange = (e) => {
     const value = e.target.value;
     setSelectedDate(value);
-    setFilterEvents((prev) => ({ ...prev, date: value }));
+    setSelectedSlicer('');
+    setFilterEvents((prev) => ({
+      ...prev,
+      date: value,
+      startDate: '',
+      endDate: '',
+    }));
   };
 
   const handleTitleChange = (e) => {

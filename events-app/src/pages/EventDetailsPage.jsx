@@ -7,7 +7,7 @@ import { MdArrowBack } from 'react-icons/md';
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const EventDetailsPage = () => {
-  const { id } = useParams(); // toma el :id de la URL
+  const { id } = useParams(); // take the :id from the URL
   const navigate = useNavigate();
 
   const goHome = () => {

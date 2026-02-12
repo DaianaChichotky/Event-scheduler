@@ -9,6 +9,8 @@ const HomePage = () => {
     error,
     setFilterEvents,
     clearFilters,
+    deleteEvent,
+    editEvent,
   } = useEvents();
 
   return (
@@ -28,7 +30,13 @@ const HomePage = () => {
         clearFilters={clearFilters}
       />
 
-      <Hero events={events} loading={loading} error={error} />
+      <Hero
+        events={events}
+        loading={loading}
+        error={error}
+        deleteEvent={deleteEvent}
+        editEvent={editEvent}
+      />
     </section>
   );
 };

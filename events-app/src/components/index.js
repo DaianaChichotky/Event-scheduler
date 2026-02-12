@@ -6,3 +6,4 @@ export { default as SearchBar } from './home/SearchBar';
 export { default as EventMap } from './card/EventMap';
 export { default as UpcomingEvents } from './card/UpcomingEvents';
 export { default as EventsMap } from './home/EventsMap';
+export { default as EditEventModal } from './card/EditEventModal';
